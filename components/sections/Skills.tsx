@@ -215,11 +215,10 @@ const Skills: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary mb-4">
-            Neural Skill Map
+            What I build with.
           </h2>
           <p className="font-body text-lg text-text-secondary max-w-2xl mx-auto">
-            An interactive visualization of my technical arsenal — grouped by domain,
-            connected by expertise.
+            Every tool below has been used in a real shipped system or published research.
           </p>
         </motion.div>
 

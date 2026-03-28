@@ -121,7 +121,7 @@ const Numbers: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="relative bg-secondary/20 border border-border rounded-xl p-6 hover:border-accent-primary/50 transition-all duration-300 group"
+              className="relative bg-secondary/20 border border-border rounded-xl p-6 hover:border-accent-primary/50 hover:-translate-y-1 hover:shadow-[0_0_30px_var(--accent-glow)] transition-all duration-300 group"
               style={{
                 borderLeft: `3px solid ${stat.accentColor}`,
               }}

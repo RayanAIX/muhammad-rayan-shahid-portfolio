@@ -72,7 +72,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
             {project.category}
           </span>
           {project.status && (
-            <span className="px-2 py-1 rounded text-xs font-mono text-text-dim border border-border/50">
+            <span className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-mono text-text-dim border border-border/50">
+              <span className="w-1.5 h-1.5 rounded-full bg-current" />
               {project.status}
             </span>
           )}
@@ -114,27 +115,29 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
           </div>
         )}
 
-        {/* Action indicator */}
-        <motion.div
-          className="flex items-center gap-2 text-accent-primary font-mono text-sm"
-          initial={{ opacity: 0, x: -10 }}
-          whileHover={{ opacity: 1, x: 0 }}
-        >
-          <span>View details</span>
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        {/* Action buttons */}
+        <div className="flex items-center gap-3 mt-4">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent-primary/50 text-accent-primary text-xs font-mono hover:bg-accent-primary/10 transition-all"
+            onClick={(e) => e.stopPropagation()}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </motion.div>
+            GitHub ↗
+          </a>
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent-primary/50 text-accent-primary text-xs font-mono hover:bg-accent-primary/10 transition-all"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Demo ↗
+            </a>
+          )}
+        </div>
       </div>
 
       {/* Glow effect */}

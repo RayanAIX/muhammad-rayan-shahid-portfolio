@@ -165,7 +165,7 @@ section {
 
 /* Terminal styles */
 .terminal {
-  background: rgba(0, 0, 0, 0.9);
+  background: #0a0a0a;
   border: 1px solid var(--border);
   border-radius: 0.75rem;
   font-family: var(--font-mono);
@@ -195,18 +195,22 @@ section {
 .terminal-body {
   padding: 1.5rem;
   color: var(--text-primary);
+  overflow-x: auto;
 }
 
 .terminal-prompt {
-  color: var(--accent-primary);
+  color: #00ff88; /* bright green */
 }
 
 .terminal-command {
-  color: var(--text-secondary);
+  color: var(--text-primary); /* white */
+}
+
+.terminal-response-prefix {
+  color: var(--accent-primary); /* cyan for > */
 }
 
 .terminal-output {
-  color: var(--text-primary);
   margin-left: 1rem;
 }
 
@@ -237,6 +241,20 @@ section {
 *:focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 4px;
+}
+
+/* Ambient cursor glow */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(0, 212, 255, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
 }
 
 /* Responsive typography */

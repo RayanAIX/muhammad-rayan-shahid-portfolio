@@ -9,67 +9,64 @@ interface TerminalLine {
   lines?: string[];
 }
 
-const Terminal: React.FC = () => {
-  const terminalLines: TerminalLine[] = [
-    { type: "prompt", text: "whoami" },
-    {
-      type: "response",
-      lines: [
-        "Muhammad Rayan Shahid",
-        "Independent AI Researcher · Age 16 · Karachi, Pakistan",
-      ],
-    },
-    { type: "prompt", text: "describe --self" },
-    {
-      type: "response",
-      lines: [
-        "I don't wait for permission to research.",
-        "I find the gap. I build the framework. I publish.",
-        "Then I do it again.",
-      ],
-    },
-    { type: "prompt", text: "ls ./research" },
-    {
-      type: "response",
-      lines: [
-        "HCMS/                  CognitiveBenchmark/",
-        "LearningAnalytics/     ConfidenceCalibration/",
-      ],
-    },
-    { type: "prompt", text: "ls ./projects" },
-    {
-      type: "response",
-      lines: [
-        "FakeNewsDetector/      EmotionClassifier/",
-        "MedicalImaging/        SpeechTranslator/",
-        "SocialAutomation/      ... +16 more",
-      ],
-    },
-    { type: "prompt", text: "cat mission.txt" },
-    {
-      type: "response",
-      lines: [
-        "Build AI that measures human cognition,",
-        "not just human performance.",
-        "Then publish the framework. At any age.",
-      ],
-    },
-    { type: "prompt", text: "echo $CURRENT_STATUS" },
-    {
-      type: "response",
-      lines: [
-        "Building. Researching. Publishing.",
-        "Age 16. No permission required.",
-      ],
-    },
-  ];
+const terminalLines: TerminalLine[] = [
+  { type: "prompt", text: "whoami" },
+  {
+    type: "response",
+    lines: [
+      "Muhammad Rayan Shahid",
+      "Independent AI Researcher · Age 16 · Karachi, Pakistan",
+    ],
+  },
+  { type: "prompt", text: "describe --self" },
+  {
+    type: "response",
+    lines: [
+      "I don't wait for permission to research.",
+      "I find the gap. I build the framework. I publish.",
+      "Then I do it again.",
+    ],
+  },
+  { type: "prompt", text: "ls ./research" },
+  {
+    type: "response",
+    lines: [
+      "HCMS/                  CognitiveBenchmark/",
+      "LearningAnalytics/     ConfidenceCalibration/",
+    ],
+  },
+  { type: "prompt", text: "ls ./projects" },
+  {
+    type: "response",
+    lines: [
+      "FakeNewsDetector/      EmotionClassifier/",
+      "MedicalImaging/        SpeechTranslator/",
+      "SocialAutomation/      ... +16 more",
+    ],
+  },
+  { type: "prompt", text: "cat mission.txt" },
+  {
+    type: "response",
+    lines: [
+      "Build AI that measures human cognition,",
+      "not just human performance.",
+      "Then publish the framework. At any age.",
+    ],
+  },
+  { type: "prompt", text: "echo $CURRENT_STATUS" },
+  {
+    type: "response",
+    lines: [
+      "Building. Researching. Publishing.",
+      "Age 16. No permission required.",
+    ],
+  },
+];
 
+const Terminal: React.FC = () => {
   const [displayedLines, setDisplayedLines] = useState<TerminalLine[]>([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
-  const [currentPromptText, setCurrentPromptText] = useState("");
-  const [currentResponseText, setCurrentResponseText] = useState<string[]>([]);
-  const [isTypingPrompt, setIsTypingPrompt] = useState(true);
-  const [isTypingResponse, setIsTypingResponse] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [typingText, setTypingText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -81,63 +78,54 @@ const Terminal: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Typing animation logic
   useEffect(() => {
-    if (currentLineIndex >= terminalLines.length) {
+    if (currentIndex >= terminalLines.length) {
       // Loop after pause
       const timeout = setTimeout(() => {
         setDisplayedLines([]);
-        setCurrentLineIndex(0);
-        setCurrentPromptText("");
-        setCurrentResponseText([]);
-        setIsTypingPrompt(true);
-        setIsTypingResponse(false);
+        setCurrentIndex(0);
+        setTypingText("");
       }, 4000);
       return () => clearTimeout(timeout);
     }
 
-    const currentLine = terminalLines[currentLineIndex];
+    const currentLine = terminalLines[currentIndex];
 
-    if (isTypingPrompt) {
-      if (currentLine.type === "prompt" && currentLine.text) {
-        if (currentPromptText.length < currentLine.text.length) {
-          const timer = setTimeout(() => {
-            setCurrentPromptText(currentLine.text.slice(0, currentPromptText.length + 1));
-          }, 35);
-          return () => clearTimeout(timer);
-        } else {
-          setIsTypingPrompt(false);
-          setTimeout(() => setIsTypingResponse(true), 200);
+    if (currentLine.type === "prompt") {
+      // Type out the prompt character by character
+      let i = 0;
+      const interval = setInterval(() => {
+        i++;
+        setTypingText(currentLine.text!.slice(0, i));
+        if (i >= currentLine.text!.length) {
+          clearInterval(interval);
+          // Prompt finished, add to displayed
+          setDisplayedLines((prev) => [
+            ...prev,
+            { type: "prompt", text: currentLine.text },
+          ]);
+          setTypingText("");
+          // After a short delay, move to response
+          const wait = setTimeout(() => {
+            setCurrentIndex((prev) => prev + 1);
+          }, 200);
+          return () => clearTimeout(wait);
         }
-      }
-    } else if (isTypingResponse) {
-      if (currentLine.type === "response" && currentLine.lines) {
-        const targetLines = currentLine.lines;
-        if (currentResponseText.length < targetLines.length) {
-          // We reveal line by line, not character by character for responses
-          const timer = setTimeout(() => {
-            setCurrentResponseText(targetLines.slice(0, currentResponseText.length + 1));
-          }, 150); // slight delay between lines
-          return () => clearTimeout(timer);
-        } else {
-          // Response complete, move to next line
-          setDisplayedLines([...displayedLines, currentLine]);
-          setCurrentLineIndex(currentLineIndex + 1);
-          setIsTypingPrompt(true);
-          setIsTypingResponse(false);
-          setCurrentPromptText("");
-          setCurrentResponseText([]);
-        }
-      }
+      }, 35);
+      return () => clearInterval(interval);
+    } else if (currentLine.type === "response") {
+      // Response appears instantly
+      setDisplayedLines((prev) => [
+        ...prev,
+        { type: "response", lines: currentLine.lines },
+      ]);
+      // Wait then next
+      const wait = setTimeout(() => {
+        setCurrentIndex((prev) => prev + 1);
+      }, 1500); // adjust dwell as needed
+      return () => clearTimeout(wait);
     }
-  }, [
-    currentLineIndex,
-    isTypingPrompt,
-    isTypingResponse,
-    currentPromptText,
-    currentResponseText,
-    displayedLines,
-  ]);
+  }, [currentIndex, typingText]);
 
   return (
     <section className="min-h-screen bg-primary py-24 flex items-center justify-center overflow-hidden">
@@ -160,7 +148,7 @@ const Terminal: React.FC = () => {
           </div>
 
           {/* Terminal body */}
-          <div className="terminal-body" ref={containerRef}>
+          <div className="terminal-body grain-overlay" ref={containerRef}>
             {/* Previously completed lines */}
             {displayedLines.map((line, idx) => (
               <div key={idx} className="command-group mb-4">
@@ -177,43 +165,34 @@ const Terminal: React.FC = () => {
                 {line.type === "response" && line.lines && (
                   <div className="terminal-output ml-4 space-y-1">
                     {line.lines.map((lineText, lineIdx) => (
-                      <p key={lineIdx} className="font-mono text-sm text-text-secondary">
-                        {lineText}
-                      </p>
+                      <div key={lineIdx} className="flex items-start gap-2">
+                        <span className="terminal-response-prefix font-mono text-sm text-accent-primary">
+                          &gt;
+                        </span>
+                        <p className="font-mono text-sm text-text-primary">
+                          {lineText}
+                        </p>
+                      </div>
                     ))}
                   </div>
                 )}
               </div>
             ))}
 
-            {/* Current line being typed */}
-            {currentLineIndex < terminalLines.length && (
+            {/* Current typing prompt */}
+            {typingText !== "" && (
               <div className="command-group">
-                {isTypingPrompt && (
-                  <div className="flex items-start gap-2">
-                    <span className="terminal-prompt font-mono text-accent-primary">
-                      rayan@bytebrilliance:~$
-                    </span>
-                    <span className="terminal-command font-mono text-text-primary">
-                      {currentPromptText}
-                      {showCursor && (
-                        <span className="inline-block w-2 h-4 bg-accent-primary ml-1 animate-pulse" />
-                      )}
-                    </span>
-                  </div>
-                )}
-                {isTypingResponse && currentResponseText.length > 0 && (
-                  <div className="terminal-output ml-4 space-y-1">
-                    {currentResponseText.map((lineText, idx) => (
-                      <p key={idx} className="font-mono text-sm text-text-secondary">
-                        {lineText}
-                      </p>
-                    ))}
+                <div className="flex items-start gap-2">
+                  <span className="terminal-prompt font-mono text-accent-primary">
+                    rayan@bytebrilliance:~$
+                  </span>
+                  <span className="terminal-command font-mono text-text-primary">
+                    {typingText}
                     {showCursor && (
                       <span className="inline-block w-2 h-4 bg-accent-primary ml-1 animate-pulse" />
                     )}
-                  </div>
-                )}
+                  </span>
+                </div>
               </div>
             )}
           </div>

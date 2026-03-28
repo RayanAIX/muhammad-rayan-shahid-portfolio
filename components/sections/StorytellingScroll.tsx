@@ -99,7 +99,7 @@ const StorytellingScroll: React.FC = () => {
 
   const chapters = [
     {
-      text: "It started with a question no textbook answered.",
+      text: "It started with a question no textbook thought to ask.",
       sub: "Karachi, 2024",
     },
     {
@@ -117,8 +117,8 @@ const StorytellingScroll: React.FC = () => {
       count: true,
     },
     {
-      text: "This is what I do.",
-      sub: "I find questions that don't have answers yet. Then I build the answers.",
+      text: "I don't build AI to follow a roadmap.",
+      sub: "I build it because the problem is real and someone has to go first.",
     },
   ];
 
@@ -140,23 +140,26 @@ const StorytellingScroll: React.FC = () => {
             key={index}
             className="chapter min-h-[60vh] flex flex-col items-center justify-center text-center mb-32"
           >
-            {chapter.code ? (
+            {/* Code chapter with syntax highlighting */}
+            {index === 2 ? (
               <>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="font-mono text-accent-primary text-lg md:text-xl mb-4 bg-secondary/30 px-6 py-4 rounded-lg border border-border"
+                  className="font-mono text-lg md:text-xl mb-4 bg-secondary/30 px-6 py-4 rounded-lg border border-border"
                 >
-                  {chapter.text}
+                  <span style={{ color: "#8b5cf6" }}>hypothesis</span> ={' '}
+                  <span style={{ color: "#00d4ff" }}>'correctness_score != understanding_level'</span>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6 }}
-                  className="font-mono text-text-secondary text-lg md:text-xl"
+                  className="font-mono text-lg md:text-xl"
                 >
-                  {chapter.sub}
+                  <span style={{ color: "#8b5cf6" }}>result</span> ={' '}
+                  <span style={{ color: "#00d4ff" }}>'cognitive_stability_matters_more'</span>
                 </motion.div>
               </>
             ) : chapter.count ? (
@@ -165,7 +168,7 @@ const StorytellingScroll: React.FC = () => {
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: "spring", stiffness: 100 }}
-                  className="font-display text-[8rem] md:text-[12rem] font-bold text-accent-primary/80 mb-8"
+                  className="font-display text-[8rem] md:text-[12rem] font-bold text-accent-primary/80 mb-8 glow-text"
                 >
                   {chapter.text}
                 </motion.div>
@@ -184,7 +187,7 @@ const StorytellingScroll: React.FC = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
-                  className="font-display text-3xl md:text-5xl font-bold leading-tight mb-6"
+                  className="font-display text-5xl md:text-7xl font-bold leading-tight mb-6"
                 >
                   {chapter.text}
                 </motion.h2>
@@ -192,8 +195,11 @@ const StorytellingScroll: React.FC = () => {
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="font-mono text-sm md:text-base text-accent-primary/80"
+                    transition={{
+                      delay: index === 4 ? 1.2 : 0.5, // longer delay for final chapter
+                      duration: 0.8
+                    }}
+                    className={`font-mono text-base md:text-lg ${index === 4 ? 'font-bold text-accent-primary' : 'text-accent-primary/80'}`}
                   >
                     {chapter.sub}
                   </motion.p>

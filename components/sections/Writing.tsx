@@ -17,11 +17,11 @@ const Writing: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary mb-4">
-            How I Think
+            Thinking Out Loud
           </h2>
           <p className="font-body text-lg text-text-secondary">
-            I write about human-centered AI, cognitive measurement, and the questions
-            that won't leave me alone.
+            Research notes, half-formed ideas, and questions I can't stop asking.
+            On Substack.
           </p>
         </motion.div>
 

@@ -29,6 +29,7 @@ const HCMS: React.FC = () => {
       const lines = diagramRef.current?.querySelectorAll(".pipeline-line");
 
       nodes?.forEach((node, i) => {
+        // Animate node container
         gsap.fromTo(
           node,
           { opacity: 0, scale: 0.8 },
@@ -44,6 +45,25 @@ const HCMS: React.FC = () => {
             },
           }
         );
+
+        // Animate rect border opacity inside node
+        const rect = (node as SVGGElement).querySelector("rect");
+        if (rect) {
+          gsap.fromTo(
+            rect,
+            { strokeOpacity: 0.3 },
+            {
+              strokeOpacity: 1,
+              duration: 0.6,
+              delay: i * 0.2,
+              scrollTrigger: {
+                trigger: node as Element,
+                start: "top 80%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        }
       });
 
       lines?.forEach((line, i) => {
@@ -106,6 +126,23 @@ const HCMS: React.FC = () => {
     "#LearningAnalytics",
   ];
 
+  // Citation data
+  const bibTeX = `@article{shahid2026hcms,
+  title={Beyond Correctness: Measuring Cognitive Stability and Confidence Calibration in Human Understanding},
+  author={Shahid, Muhammad Rayan},
+  year={2026},
+  publisher={Zenodo},
+  doi={10.5281/zenodo.18269740}
+}`;
+
+  const [copied, setCopied] = useState(false);
+
+  const copyCitation = async () => {
+    await navigator.clipboard.writeText(bibTeX);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section
       id="research"
@@ -166,10 +203,12 @@ const HCMS: React.FC = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="font-body text-lg md:text-xl text-text-secondary max-w-3xl mx-auto mb-12"
           >
-            Traditional assessment systems equate correctness with understanding.
-            HCMS challenges this. It models understanding as a multidimensional
-            construct: accuracy, confidence calibration, reasoning consistency,
-            and robustness under perturbation — across 15 structured research phases.
+            Every test you've ever taken assumed correctness equals understanding.
+            HCMS proves it doesn't. Across 15 structured research phases, HCMS
+            models the gap between getting something right and truly knowing it —
+            measuring confidence calibration, reasoning consistency, and cognitive
+            stability under pressure. This is what assessment looks like when the
+            question matters more than the answer.
           </motion.p>
 
           {/* Animated Metrics */}
@@ -323,9 +362,9 @@ const HCMS: React.FC = () => {
                       width="240"
                       height="60"
                       rx="8"
-                      fill="rgba(17, 17, 22, 0.8)"
-                      stroke="#00d4ff"
-                      strokeWidth="2"
+                      fill="#111116"
+                      stroke="rgba(0,212,255,0.3)"
+                      strokeWidth="1"
                       filter="url(#glow)"
                     />
 
@@ -376,6 +415,48 @@ const HCMS: React.FC = () => {
             </svg>
           </motion.div>
         </div>
+
+        {/* Citation Callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mt-12"
+        >
+          <div className="bg-secondary/30 border border-border rounded-xl p-6 max-w-4xl mx-auto">
+            <div className="flex items-start gap-4">
+              <span className="text-2xl">🔬</span>
+              <div className="flex-1">
+                <p className="font-body text-text-primary mb-3">
+                  This framework is open-source and citable.
+                </p>
+                <p className="font-mono text-sm text-text-secondary mb-4">
+                  Shahid, M.R. (2026). Beyond Correctness: Measuring Cognitive
+                  Stability and Confidence Calibration in Human Understanding.
+                  <br />
+                  Zenodo. DOI: 10.5281/zenodo.18269740
+                </p>
+                <div className="flex gap-4">
+                  <button
+                    onClick={copyCitation}
+                    className="btn btn-ghost text-sm"
+                  >
+                    {copied ? "Copied!" : "Copy Citation"}
+                  </button>
+                  <a
+                    href={constants.doiUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-ghost text-sm"
+                  >
+                    View on Zenodo
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Topic Tags */}
         <motion.div

@@ -5,7 +5,7 @@ export const constants = {
   age: 16,
   location: "Karachi, Pakistan",
   organization: "ByteBrilliance AI",
-  tagline: "Building AI that measures human minds, not just their answers.",
+  tagline: "Building AI that measures how humans think — not just whether they're right.",
   email: "m.rayanshahid5@gmail.com",
   social: {
     github: "https://github.com/RayanAIX",

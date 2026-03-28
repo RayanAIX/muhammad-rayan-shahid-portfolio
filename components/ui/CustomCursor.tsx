@@ -35,6 +35,9 @@ const CustomCursor: React.FC = () => {
     const updateMousePosition = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
+      // Update CSS variables for ambient glow
+      document.body.style.setProperty('--cursor-x', `${e.clientX}px`);
+      document.body.style.setProperty('--cursor-y', `${e.clientY}px`);
     };
 
     const handleMouseEnter = () => {

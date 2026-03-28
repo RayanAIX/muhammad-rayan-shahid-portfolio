@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { motion, useScroll } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import Lenis from "lenis";
@@ -17,6 +18,20 @@ import Skills from "@/components/sections/Skills";
 import Writing from "@/components/sections/Writing";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
+
+const ReadingProgressBar = () => {
+  const { scrollYProgress } = useScroll();
+  return (
+    <motion.div
+      className="fixed top-0 left-0 h-[2px] bg-accent-primary origin-left z-50"
+      style={{ scaleX: scrollYProgress }}
+    />
+  );
+};
+
+const SectionDivider = () => (
+  <div className="h-px bg-gradient-to-r from-transparent via-accent-primary/10 to-transparent my-8" />
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,6 +76,9 @@ const HomePage: React.FC = () => {
 
   return (
     <>
+      {/* Reading Progress Bar */}
+      <ReadingProgressBar />
+
       {/* Custom Cursor */}
       <CustomCursor />
 
@@ -71,33 +89,43 @@ const HomePage: React.FC = () => {
       <main className="lenis-lenis-wrapper">
         {/* Section 1: Hero */}
         <Hero />
+        <SectionDivider />
 
         {/* Section 2: Storytelling Scroll */}
         <StorytellingScroll />
+        <SectionDivider />
 
         {/* Section 3: HCMS Research */}
         <HCMS />
+        <SectionDivider />
 
         {/* Section 4: Terminal */}
         <Terminal />
+        <SectionDivider />
 
         {/* Section 5: Projects */}
         <Projects />
+        <SectionDivider />
 
         {/* Section 6: Numbers */}
         <Numbers />
+        <SectionDivider />
 
         {/* Section 7: Skills */}
         <Skills />
+        <SectionDivider />
 
         {/* Section 8: Writing */}
         <Writing />
+        <SectionDivider />
 
         {/* Section 9: About */}
         <About />
+        <SectionDivider />
 
         {/* Section 10: Contact */}
         <Contact />
+        <SectionDivider />
       </main>
 
       {/* Footer */}

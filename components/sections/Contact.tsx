@@ -78,13 +78,13 @@ const Contact: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">
-            Let&apos;s build something
+            Let&apos;s do something
             <br />
-            <span className="text-accent-primary">that doesn&apos;t exist yet.</span>
+            <span className="text-accent-primary">that matters.</span>
           </h2>
           <p className="font-body text-lg text-text-secondary max-w-2xl mx-auto">
-            Whether you&apos;re a researcher, a recruiter, a university, or just curious —
-            I want to hear from you.
+            Researchers, universities, collaborators, people who read HCMS and had
+            thoughts — reach out. I read everything.
           </p>
         </motion.div>
 

@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            {constants.name} · Built with purpose · {constants.location}
+            {constants.name} · Built with obsession · {constants.location}
           </motion.p>
 
           {/* Social links */}
@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
 
           {/* Copyright */}
           <p className="text-text-dim text-xs font-mono">
-            © {new Date().getFullYear()} {constants.organization}
+            © 2026 Muhammad Rayan Shahid
           </p>
         </div>
       </div>

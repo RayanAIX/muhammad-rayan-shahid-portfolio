@@ -7,6 +7,8 @@ import Link from "next/link";
 import { constants } from "@/lib/constants";
 
 const About: React.FC = () => {
+  const [imgError, setImgError] = useState(false);
+
   const socialLinks = [
     { name: "GitHub", href: constants.social.github, handle: "@RayanAIX" },
     { name: "LinkedIn", href: constants.social.linkedin, handle: "Muhammad Rayan Shahid" },
@@ -45,13 +47,20 @@ const About: React.FC = () => {
               {/* Photo container */}
               <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-3xl overflow-hidden border-2 border-accent-primary/30">
                 <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10" />
-                <Image
-                  src="/images/rayan.jpg"
-                  alt="Muhammad Rayan Shahid"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 20rem, 24rem"
-                />
+                {imgError ? (
+                  <div className="absolute inset-0 bg-secondary/20 flex items-center justify-center">
+                    <span className="font-display text-4xl md:text-5xl text-accent-primary">MR</span>
+                  </div>
+                ) : (
+                  <Image
+                    src="/images/rayan.jpg"
+                    alt="Muhammad Rayan Shahid"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 20rem, 24rem"
+                    onError={() => setImgError(true)}
+                  />
+                )}
               </div>
             </div>
 
@@ -63,7 +72,7 @@ const About: React.FC = () => {
               transition={{ delay: 0.4 }}
               className="mt-6 px-6 py-3 rounded-full bg-accent-primary/10 border border-accent-primary/30 font-mono text-accent-primary text-sm"
             >
-              {constants.organization} Founder
+              Independent AI Researcher · Karachi, Pakistan
             </motion.div>
           </motion.div>
 
@@ -89,36 +98,27 @@ const About: React.FC = () => {
               </p>
 
               <p className="font-body text-text-secondary">
-                At {constants.age}, I built HCMS — the Human Cognition Measurement
-                System. Not because it was assigned. Because I realized that every
-                test I'd ever taken was measuring the wrong thing. Correctness is
-                easy to fake. Understanding is harder to hide.
-              </p>
-
-              <p className="font-body text-text-secondary">
-                I'm an{" "}
+                At {constants.age}, I published a DOI-backed cognitive science preprint — HCMS, the Human Cognition Measurement System. Not because a professor told me to. Because I realized that every exam I'd taken was measuring the wrong thing. Correctness is easy to fake.
                 <span className="text-accent-primary font-semibold">
-                  independent AI researcher
-                </span>
-                , and the founder of ByteBrilliance AI. I work at the intersection
-                of cognitive science, machine learning, and human-centered AI —
-                asking questions that most systems don't think to ask.
-              </p>
-
-              <p className="font-body text-text-secondary">
-                My thesis: intelligence is not a score. It's a stability.
-                A calibration. A consistency across conditions.
-                <br />
-                <span className="text-accent-primary font-semibold">
-                  That's what HCMS measures. That's what I'm building toward.
+                  Deep understanding isn't.
                 </span>
               </p>
 
               <p className="font-body text-text-secondary">
-                I'm not learning AI to get a job.
+                I work at the intersection of machine learning, cognitive science, and human-centered AI. My research asks: can we formally measure how a person understands something — not just whether they answered correctly? HCMS is the first answer to that question.
+              </p>
+
+              <p className="font-body text-text-secondary">
+                My thesis is simple: intelligence is a stability, not a score.
+                A calibration. A consistency under pressure.
+              </p>
+
+              <p className="font-body text-text-secondary">
+                I'm not building AI to get a job.
                 <br />
                 <span className="text-accent-primary font-semibold">
-                  I'm building things that don't exist yet — and publishing them.
+                  I'm building things that don't exist yet.
+                  That's the only reason worth having.
                 </span>
               </p>
             </div>
@@ -144,7 +144,7 @@ const About: React.FC = () => {
                     transition={{ delay: 0.8 + index * 0.1 }}
                   >
                     <Link
-                      href={social.handle}
+                      href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 p-3 rounded-xl bg-secondary/30 border border-border hover:border-accent-primary/50 transition-all duration-300 group"

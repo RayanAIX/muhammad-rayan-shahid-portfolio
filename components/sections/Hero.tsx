@@ -8,9 +8,10 @@ import { constants } from "@/lib/constants";
 
 const Hero: React.FC = () => {
   const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const scale = useTransform(scrollY, [0, 300], [1, 0.8]);
-  const blur = useTransform(scrollY, [0, 300], [0, 10]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const scale = useTransform(scrollY, [0, 400], [1, 0.85]);
+  const blur = useTransform(scrollY, [0, 400], [0, 12]);
+  const heroY = useTransform(scrollY, [0, 500], [0, -100]);
 
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -55,13 +56,13 @@ const Hero: React.FC = () => {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <motion.div className="relative z-10 max-w-7xl mx-auto px-6 text-center" style={{ y: heroY }}>
         {/* Badge */}
         <motion.div
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-5"
+          className="mb-6"
         >
           <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-accent-primary/30 bg-transparent">
             <span className="font-mono text-xs tracking-widest uppercase text-text-secondary">
@@ -131,7 +132,7 @@ const Hero: React.FC = () => {
             {constants.tagline}
           </p>
           <p className="font-body text-lg md:text-xl text-text-secondary">
-            {constants.location} · {constants.organization} Founder
+            {constants.location}
           </p>
         </motion.div>
 
