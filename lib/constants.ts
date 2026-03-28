@@ -1,0 +1,21 @@
+export const constants = {
+  name: "Muhammad Rayan Shahid",
+  handle: "RayanAIX",
+  title: "Independent AI Researcher",
+  age: 16,
+  location: "Karachi, Pakistan",
+  organization: "ByteBrilliance AI",
+  tagline: "Building AI that measures human minds, not just their answers.",
+  email: "m.rayanshahid5@gmail.com",
+  social: {
+    github: "https://github.com/RayanAIX",
+    linkedin: "https://linkedin.com/in/muhammad-rayan-shahid",
+    kaggle: "https://kaggle.com/muhammadrayanshahid",
+    huggingface: "https://huggingface.co/RayNetic",
+    youtube: "https://youtube.com/@ByteBrillianceAI",
+    substack: "https://substack.com/@muhammedrayanshahid",
+  },
+  doi: "10.5281/zenodo.18269740",
+  doiUrl: "https://doi.org/10.5281/zenodo.18269740",
+  repoUrl: "https://github.com/RayanAIX/HCMS",
+};
