@@ -118,7 +118,7 @@ export default function ParticleField() {
           if (dist < 120) {
             const opacity = (1 - dist / 120) * 0.15;
             ctx.beginPath();
-            ctx.moveTo(p1.x, p.y);
+            ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = `rgba(0, 212, 255, ${opacity})`;
             ctx.lineWidth = 1;
