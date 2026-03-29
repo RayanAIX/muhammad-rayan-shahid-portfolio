@@ -12,6 +12,7 @@ import { AtmosphericBackground } from "@/components/ui/AtmosphericBackground";
 import { ActivationOverlay } from "@/components/ui/ActivationOverlay";
 import Hero from "@/components/sections/Hero";
 import StorytellingScroll from "@/components/sections/StorytellingScroll";
+import UnderstandingSection from "@/components/sections/UnderstandingSection";
 import HCMS from "@/components/sections/HCMS";
 import Terminal from "@/components/sections/Terminal";
 import Projects from "@/components/sections/Projects";
@@ -101,6 +102,10 @@ const HomePage: React.FC = () => {
 
         {/* Section 2: Storytelling Scroll */}
         <StorytellingScroll />
+        <SectionDivider />
+
+        {/* Section: Understanding */}
+        <UnderstandingSection />
         <SectionDivider />
 
         {/* Section 3: HCMS Research */}
