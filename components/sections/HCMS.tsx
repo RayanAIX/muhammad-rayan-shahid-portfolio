@@ -393,23 +393,47 @@ const HCMS: React.FC = () => {
               >
                 <rect
                   x="80"
-                  y="540"
+                  y="530"
                   width="240"
-                  height="45"
+                  height="70"
                   rx="6"
-                  fill="#111116"
-                  stroke="#7c3aed"
+                  fill="rgba(0,212,255,0.05)"
+                  stroke="rgba(0,212,255,0.5)"
                   strokeWidth="1.5"
                 />
+                {/* Line 1: Cognitive Profile */}
                 <text
                   x="200"
-                  y="568"
+                  y="555"
+                  textAnchor="middle"
+                  fill="#f0f0f5"
+                  fontFamily="Syne, sans-serif"
+                  fontSize="12"
+                  fontWeight="600"
+                >
+                  Cognitive Profile
+                </text>
+                {/* Line 2: Partial | Miscalibrated */}
+                <text
+                  x="200"
+                  y="575"
                   textAnchor="middle"
                   fill="#00d4ff"
                   fontFamily="JetBrains Mono, monospace"
                   fontSize="11"
                 >
-                  Partial | Miscalibrated | Consistency: 0.83
+                  Partial | Miscalibrated
+                </text>
+                {/* Line 3: Consistency: 0.83 */}
+                <text
+                  x="200"
+                  y="592"
+                  textAnchor="middle"
+                  fill="#00d4ff"
+                  fontFamily="JetBrains Mono, monospace"
+                  fontSize="9"
+                >
+                  Consistency: 0.83
                 </text>
               </motion.g>
             </svg>

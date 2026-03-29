@@ -84,7 +84,7 @@ const Hero: React.FC = () => {
               },
             },
           }}
-          className="mb-6"
+          className="mb-5"
         >
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight text-text-primary mb-4">
             {headlineLines.map((line, lineIndex) => {
@@ -126,7 +126,7 @@ const Hero: React.FC = () => {
             delay: totalWords * staggerDelay + 0.8,
             ease: [0.25, 0.1, 0.25, 1],
           }}
-          className="max-w-3xl mx-auto mb-12"
+          className="max-w-3xl mx-auto mb-8"
         >
           <p className="font-body text-lg md:text-xl text-text-secondary mb-2">
             {constants.tagline}
