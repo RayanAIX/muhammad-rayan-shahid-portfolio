@@ -33,7 +33,7 @@ function AnimatedCounter({
     }
   }, [inView, target, duration]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return <span ref={ref} className="tabular-nums">{count}{suffix}</span>;
 }
 
 const sparklines = [

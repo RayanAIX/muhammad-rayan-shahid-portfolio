@@ -196,6 +196,7 @@ section {
   padding: 1.5rem;
   color: var(--text-primary);
   overflow-x: auto;
+  white-space: nowrap;
 }
 
 .terminal-prompt {
@@ -291,4 +292,8 @@ body::before {
   0%   { transform: translate(0, 0) scale(1); }
   50%  { transform: translate(-60px, -80px) scale(1.1); }
   100% { transform: translate(-100px, -30px) scale(0.9); }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }

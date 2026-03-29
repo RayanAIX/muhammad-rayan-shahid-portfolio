@@ -213,6 +213,16 @@ const HCMS: React.FC = () => {
             question matters more than the answer.
           </motion.p>
 
+          {/* Additional sentence */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="font-body text-lg md:text-xl text-text-secondary max-w-3xl mx-auto mb-12"
+          >
+            At 16, that framework became a DOI-backed preprint. The research isn&apos;t finished — it&apos;s just begun.
+          </motion.p>
+
             {/* HCMS Detail Tabs */}
             <div className="mt-12">
               <div className="flex flex-wrap justify-center gap-4 border-b border-border mb-6">

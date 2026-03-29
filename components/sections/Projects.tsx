@@ -31,8 +31,7 @@ const Projects: React.FC = () => {
             Featured Projects
           </h2>
           <p className="font-body text-lg text-text-secondary max-w-2xl mx-auto">
-            A showcase of AI systems, research frameworks, and deployed applications
-            built at the intersection of cognitive science and machine learning.
+            23 repositories. 7 deployed systems. 1 published preprint. Here are the ones worth your attention.
           </p>
         </motion.div>
 

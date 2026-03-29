@@ -86,7 +86,7 @@ const Hero: React.FC = () => {
           }}
           className="mb-5"
         >
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight text-text-primary mb-4">
+          <h1 className="font-display text-[clamp(2.25rem,8vw,6rem)] font-bold leading-[1.1] tracking-tight text-text-primary mb-4">
             {headlineLines.map((line, lineIndex) => {
               const startIndex = headlineLines.slice(0, lineIndex).reduce((sum, l) => sum + l.words.length, 0);
               return (

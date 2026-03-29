@@ -208,6 +208,21 @@ const Contact: React.FC = () => {
           </button>
         </motion.form>
 
+        {/* Additional contact info */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          className="text-center mb-8"
+        >
+          <span className="font-body text-text-secondary text-sm">
+            Response time: usually within 24 hours.
+            <br />
+            Preferred topics: research collaboration, academic opportunities, AI systems.
+          </span>
+        </motion.p>
+
         {/* Social Grid */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

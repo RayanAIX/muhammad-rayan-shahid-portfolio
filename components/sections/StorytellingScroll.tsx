@@ -147,19 +147,38 @@ const StorytellingScroll: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="font-mono text-lg md:text-xl mb-4 bg-secondary/30 px-6 py-4 rounded-lg border border-border"
+                  className="font-mono text-base md:text-lg mb-3 bg-secondary/30 px-6 py-4 rounded-lg border border-border"
                 >
-                  <span style={{ color: "#8b5cf6" }}>hypothesis</span> ={' '}
-                  <span style={{ color: "#00d4ff" }}>'correctness_score != understanding_level'</span>
+                  <span className="text-gray-400"># The hypothesis that changed everything</span>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6 }}
-                  className="font-mono text-lg md:text-xl"
+                  className="font-mono text-base md:text-lg mb-2"
                 >
-                  <span style={{ color: "#8b5cf6" }}>result</span> ={' '}
-                  <span style={{ color: "#00d4ff" }}>'cognitive_stability_matters_more'</span>
+                  <span style={{ color: "#8b5cf6" }}>correctness_score</span>: float = student.{' '}
+                  <span style={{ color: "#00d4ff" }}>get_answer</span>()
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.9 }}
+                  className="font-mono text-base md:text-lg mb-2"
+                >
+                  <span style={{ color: "#8b5cf6" }}>understanding_level</span>: float = hcms.{' '}
+                  <span style={{ color: "#00d4ff" }}>measure</span>(student)
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.2 }}
+                  className="font-mono text-base md:text-lg"
+                >
+                  <span style={{ color: "#8b5cf6" }}>assert</span> correctness_score != understanding_level{' '}
+                  <span className="text-gray-500"># ← always true</span>
+                  <br />
+                  <span className="text-gray-400"># The gap between these two values is what I research.</span>
                 </motion.div>
               </>
             ) : chapter.count ? (
