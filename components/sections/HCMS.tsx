@@ -115,15 +115,15 @@ const HCMS: React.FC = () => {
     },
   ];
 
-  const topics = [
-    "#HumanCenteredAI",
-    "#CognitiveModeling",
-    "#XAI",
-    "#Psychometrics",
-    "#ConfidenceCalibration",
-    "#EdTech",
-    "#AIEvaluation",
-    "#LearningAnalytics",
+  const topicTags = [
+    { label: "Human-Centered AI", href: "https://github.com/topics/human-centered-ai" },
+    { label: "Cognitive Modeling", href: "https://github.com/topics/cognitive-modeling" },
+    { label: "XAI", href: "https://github.com/topics/xai" },
+    { label: "Psychometrics", href: "https://github.com/topics/psychometrics" },
+    { label: "Confidence Calibration", href: "#" },
+    { label: "EdTech", href: "https://github.com/topics/ai-for-education" },
+    { label: "AI Evaluation", href: "https://github.com/topics/ai-evaluation" },
+    { label: "Learning Analytics", href: "https://github.com/topics/learning-analytics" },
   ];
 
   // Citation data
@@ -490,17 +490,16 @@ const HCMS: React.FC = () => {
           className="border-t border-border pt-12"
         >
           <div className="flex flex-wrap justify-center gap-3">
-            {topics.map((topic, index) => (
-              <motion.span
-                key={topic}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={inView ? { scale: 1, opacity: 1 } : {}}
-                transition={{ delay: 2.2 + index * 0.05 }}
-                whileHover={{ scale: 1.1 }}
-                className="px-4 py-2 rounded-full bg-accent-primary/10 border border-accent-primary/30 text-accent-primary text-sm font-mono hover:bg-accent-primary/20 transition-all duration-300"
+            {topicTags.map((tag) => (
+              <a
+                key={tag.label}
+                href={tag.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-full border border-accent-primary/20 bg-accent-primary/5 text-accent-primary text-xs hover:border-accent-primary/50 hover:bg-accent-primary/10 transition-colors"
               >
-                {topic}
-              </motion.span>
+                {tag.label}
+              </a>
             ))}
           </div>
         </motion.div>

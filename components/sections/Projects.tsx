@@ -11,12 +11,8 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
   const filteredProjects = useMemo(() => {
-    let base = projects;
-    if (activeFilter !== "All") {
-      base = projects.filter((p) => p.category === activeFilter);
-    }
-    // Exclude HCMS from grid (featured in its own section)
-    return base.filter((p) => p.id !== "hcms");
+    if (activeFilter === "All") return projects;
+    return projects.filter((p) => p.category === activeFilter);
   }, [activeFilter]);
 
   return (
