@@ -98,22 +98,9 @@ const Writing: React.FC = () => {
                   href={constants.social.substack}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-accent-primary text-black font-display font-semibold hover:bg-accent-primary/90 transition-colors duration-300"
+                  className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-full border border-[#00d4ff]/30 text-[#00d4ff] text-sm font-medium hover:bg-[#00d4ff]/10 hover:border-[#00d4ff]/60 transition-all duration-200"
                 >
-                  <span>Read My Writing</span>
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+                  Read on Substack ↗
                 </Link>
               </motion.div>
             </div>

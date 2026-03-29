@@ -57,7 +57,9 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <Link href="#" className="group flex items-center gap-2">
-            <img src="/logo.svg" alt="RayanAIX" className="h-8 w-auto" />
+            <span className="font-['Syne'] text-lg font-bold tracking-wider">
+              M<span className="text-[#00d4ff]">·</span>R<span className="text-[#00d4ff]">·</span>S
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
